@@ -1,0 +1,11 @@
+#+TITLE:Evil-avy
+[[https://bitbucket.org/lyro/evil/wiki/Home][Evil]] motions with [[https://github.com/abo-abo/avy][avy]] style.
+
+Without count, motions will let you pick candidate via avy.
+
+This is work in progress.
+
+Finished:
+- =f= =F= =t= =T=
+
+This project is licensed under GPLv3.
