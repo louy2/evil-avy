@@ -88,6 +88,40 @@ If BACK is t, jump backward."
         (forward-char))
     (evil-find-char-to-backward count char)))
 
+(defun avy-forward-word-0 (&optional back)
+  "Jumps forward to a word start.
+If BACK is t, jumps backward."
+  (interactive)
+  (avy-with avy-goto-word-0
+    (let ((avy-all-windows nil))
+      (avy--process
+       (save-restriction
+         (if (null back)
+             (narrow-to-region (point)
+                               (window-end (selected-window) t))
+           (narrow-to-region (window-start (selected-window))
+                             (point)))
+         (avy--regex-candidates "\\b\\sw"))
+       (avy--style-fn avy-style)))))
+
+(evil-define-motion evil-avy-forward-word-0 (count)
+  "Use avy to jump forward to a word start."
+  :jump t
+  :type exclusive
+  (interactive)
+  (if (null count)
+      (avy-forward-word-0)
+    (evil-forward-word-begin count)))
+
+(evil-define-motion evil-avy-backward-word-0 (count)
+  "Use avy to jump backward to a word start."
+  :jump t
+  :type inclusive
+  (interactive)
+  (if (null count)
+      (avy-forward-word-0 t)
+    (evil-backward-word-begin count)))
+
 ;; Replace motions
 
 (evil-define-key 'normal evil-avy-mode-map
@@ -95,6 +129,8 @@ If BACK is t, jump backward."
   "F" 'evil-avy-find-char-backward
   "t" 'evil-avy-find-char-to
   "T" 'evil-avy-find-char-to-backward
+  "w" 'evil-avy-forward-word-0
+  "b" 'evil-avy-backward-word-0
   )
 
 (evil-define-key 'operator evil-avy-mode-map
@@ -102,6 +138,8 @@ If BACK is t, jump backward."
   "F" 'evil-avy-find-char-backward
   "t" 'evil-avy-find-char-to
   "T" 'evil-avy-find-char-to-backward
+  "w" 'evil-avy-forward-word-0
+  "b" 'evil-avy-backward-word-0
   )
 
 (evil-define-key 'visual evil-avy-mode-map
@@ -109,6 +147,8 @@ If BACK is t, jump backward."
   "F" 'evil-avy-find-char-backward
   "t" 'evil-avy-find-char-to
   "T" 'evil-avy-find-char-to-backward
+  "w" 'evil-avy-forward-word-0
+  "b" 'evil-avy-backward-word-0
   )
 
 (evil-define-key 'motion evil-avy-mode-map
@@ -116,6 +156,8 @@ If BACK is t, jump backward."
   "F" 'evil-avy-find-char-backward
   "t" 'evil-avy-find-char-to
   "T" 'evil-avy-find-char-to-backward
+  "w" 'evil-avy-forward-word-0
+  "b" 'evil-avy-backward-word-0
   )
 
 ;;;###autoload
