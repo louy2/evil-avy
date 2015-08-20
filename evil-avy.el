@@ -49,7 +49,7 @@ If BACK is t, jump backward."
          (avy--regex-candidates (regexp-quote (string char))))
        (avy--style-fn avy-style)))))
 
-(evil-define-motion evil-avy-find-char (&optional count char)
+(evil-define-motion evil-avy-find-char (count char)
   "Use avy to move forward to char in line."
   :jump t
   :type inclusive
@@ -57,7 +57,7 @@ If BACK is t, jump backward."
   (if (null count) (avy-forward-char-in-line char)
     (evil-find-char count char)))
 
-(evil-define-motion evil-avy-find-char-to (&optional count char)
+(evil-define-motion evil-avy-find-char-to (count char)
   "Use avy to move till char in line"
   :jump t
   :type inclusive
@@ -68,7 +68,7 @@ If BACK is t, jump backward."
         (backward-char))
     (evil-find-char-to count char)))
 
-(evil-define-motion evil-avy-find-char-backward (&optional count char)
+(evil-define-motion evil-avy-find-char-backward (count char)
   "Use avy to move backward to char in line."
   :jump t
   :type exclusive
@@ -77,7 +77,7 @@ If BACK is t, jump backward."
       (avy-forward-char-in-line char t)
     (evil-find-char-backward count char)))
 
-(evil-define-motion evil-avy-find-char-to-backward (&optional count char)
+(evil-define-motion evil-avy-find-char-to-backward (count char)
   "Use avy to move backward till char in line."
   :jump t
   :type exclusive
