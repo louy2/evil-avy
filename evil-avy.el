@@ -54,30 +54,39 @@ If BACK is t, jump backward."
   :jump t
   :type inclusive
   (interactive "<c><C>")
-  (avy-forward-char-in-line char))
+  (if (null count) (avy-forward-char-in-line char)
+    (evil-find-char count char)))
 
 (evil-define-motion evil-avy-find-char-to (&optional count char)
   "Use avy to move till char in line"
   :jump t
   :type inclusive
   (interactive "<c><C>")
-  (avy-forward-char-in-line char)
-  (backward-char))
+  (if (null count)
+      (progn
+        (avy-forward-char-in-line char)
+        (backward-char))
+    (evil-find-char-to count char)))
 
 (evil-define-motion evil-avy-find-char-backward (&optional count char)
   "Use avy to move backward to char in line."
   :jump t
   :type exclusive
   (interactive "<c><C>")
-  (avy-forward-char-in-line char t))
+  (if (null count)
+      (avy-forward-char-in-line char t)
+    (evil-find-char-backward count char)))
 
 (evil-define-motion evil-avy-find-char-to-backward (&optional count char)
   "Use avy to move backward till char in line."
   :jump t
   :type exclusive
   (interactive "<c><C>")
-  (avy-forward-char-in-line char t)
-  (forward-char))
+  (if (null count)
+      (progn
+        (avy-forward-char-in-line char t)
+        (forward-char))
+    (evil-find-char-to-backward count char)))
 
 ;; Replace motions
 
