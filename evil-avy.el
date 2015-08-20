@@ -108,7 +108,6 @@ If BACK is t, jumps backward."
   "Use avy to jump forward to a word start."
   :jump t
   :type exclusive
-  (interactive)
   (if (null count)
       (avy-forward-word-0)
     (evil-forward-word-begin count)))
@@ -117,7 +116,6 @@ If BACK is t, jumps backward."
   "Use avy to jump backward to a word start."
   :jump t
   :type inclusive
-  (interactive)
   (if (null count)
       (avy-forward-word-0 t)
     (evil-backward-word-begin count)))
