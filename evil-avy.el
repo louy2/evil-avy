@@ -118,6 +118,16 @@ If BACK is t, jump backward."
   "T" 'evil-avy-find-char-to-backward
   )
 
+(evil-define-operator evil-avy-jump-char-operator (beg end)
+  "Jump to a character in a motion"
+  (avy-with avy-goto-char
+    (avy--generic-jump
+     (regexp-quote (string (read-char "char:")))
+     avy-all-windows
+     avy-style
+     beg
+     end)))
+
 ;;;###autoload
 (define-minor-mode evil-avy-mode
   "Toggle evil-avy-mode.
