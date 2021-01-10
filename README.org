@@ -1,5 +1,5 @@
 #+TITLE:Evil-avy
-[[https://bitbucket.org/lyro/evil/wiki/Home][Evil]] motions with [[https://github.com/abo-abo/avy][avy]] style.
+[[https://github.com/emacs-evil/evil][Evil]] motions with [[https://github.com/abo-abo/avy][avy]] style.
 
 Without count, motions will let you pick candidate via avy.
 
